@@ -31,5 +31,7 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-// create the model for users and expose it to our app
+// create the model for "users" collection in db
 module.exports = mongoose.model('User', userSchema);
+//Why mongoose add "s" to the end of a collection name 5555.
+//http://stackoverflow.com/questions/10547118/why-does-mongoose-always-add-an-s-to-the-end-of-my-collection-name

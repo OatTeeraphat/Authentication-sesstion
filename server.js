@@ -1,25 +1,27 @@
-// set up ======================================================================
+//set base path dir
+global.__base = __dirname + '/'
 
+// set up ======================================================================
 var express  = require('express');
 var app      = express();
 
 var port     = process.env.PORT || 8080;
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
-var morgan       = require('morgan');
+var morgan       = require('morgan');//use log activity.
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js');
 
 var router = express.Router(); // ROUTES FOR OUR API
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to database
-
+var con = require('./mongocon.js')();
+//mongoose.connect(configDB.url); // connect to database
 var User     = require('./app/models/user');
 
 require('./config/passport')(passport); // js for config Passport
@@ -50,13 +52,8 @@ require('./app/routes.js')(app, passport); // load our routes configured passpor
 // service ======================================================================
 // for testAPI for our platfrom
 
-
 require('./app/service.js')(router);
-
 app.use('/api', router);
-
-
-
 
 // launch ======================================================================
 app.listen(port);
