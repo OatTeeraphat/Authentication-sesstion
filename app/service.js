@@ -3,7 +3,7 @@ module.exports = function(router) {
 
     //middle ware service status
     router.use(function(req, res, next) {
-        console.log('service is available');
+        console.log('service is working');
         next();
     });
 

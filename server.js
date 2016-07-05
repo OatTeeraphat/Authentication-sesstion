@@ -1,11 +1,11 @@
-//set base path dir
-global.__base = __dirname + '/'
+//base path dir
+global.__base = __dirname + '/';
+var config = require(__base + 'mongo_config');
 
 // set up ======================================================================
 var express  = require('express');
 var app      = express();
-
-var port     = process.env.PORT || 8080;
+var port 	 = process.env.PORT || config.host.PORT;
 //var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -35,8 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
-// required for passport
-app.use(session({
+app.use(session({// required for passport
 	secret: process.env.SEESION_SECRET || 'oatlikeme',
 	resave : false,
 	saveUnintitialized : false,

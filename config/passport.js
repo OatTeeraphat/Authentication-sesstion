@@ -7,7 +7,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var User       = require('../app/models/user');
 
 // load the passport platfrom auth variables
-var configAuth = require('./auth'); // use this one for testing
+var config = require( __base +'mongo_config') //require config file.
+//var configAuth = require('./auth');
 
 module.exports = function(passport) {
 
@@ -142,9 +143,9 @@ module.exports = function(passport) {
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
+        clientID        : config.facebookAuth.clientID,
+        clientSecret    : config.facebookAuth.clientSecret,
+        callbackURL     : config.facebookAuth.callbackURL,
         profileFields   : ['id', 'name', 'email','photos'],
         passReqToCallback : true //check if a user is logged in Session
 
