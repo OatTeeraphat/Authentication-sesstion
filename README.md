@@ -19,10 +19,16 @@ pls. install node module
 
 	"npm install" 
 
-and preview At
+can use config envoronment development or testserver and preview it
 
-	"node server"
+	windows cmd >> set NODE_ENV=development
+		    >> node server 
 
+and linux preview At
+
+	linux cmd >> sudo NODE_ENV=development node server
+	
+	
 AND enjoy World :)
 
 Oatteeraphat :+1:
